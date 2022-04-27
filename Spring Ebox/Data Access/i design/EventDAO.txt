@@ -1,0 +1,103 @@
+package com.spring.dao;
+
+import com.spring.entity.*;
+import java.sql.ResultSet;
+import java.sql.Types;
+import java.sql.SQLException;
+import java.util.*;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import javax.sql.DataSource;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
+
+@Component("eventDAO")
+public class EventDAO {
+    
+    private DataSource datasource;
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+    
+    public DataSource getDataSource()
+        {
+            return datasource;
+        }
+        public void setDataSource(DataSource dataSource)
+        {
+            this.jdbcTemplate= new JdbcTemplate(dataSource);
+        }
+    
+	public List<Event> getAllEvents(){
+       try{ //fill your code
+        String SQL = "select * from event e inner join hall h on e.hall_id=h.id";
+      List <Event> events = jdbcTemplate.query(SQL,new EventMapper());
+      return events;
+       }
+       catch(EmptyResultDataAccessException e){
+         return new ArrayList<Event>();
+       }
+    }
+    
+    public Hall getHallDetail(int id){
+    	try {
+		    String SQL = "select * from hall where id ="+ id;
+		    return jdbcTemplate.queryForObject(SQL,new HallMapper());
+    	}
+    	catch(EmptyResultDataAccessException e) {
+    		return null;
+    	}
+    }
+    
+    public Hall findHallByName(String name){
+		// fill your code
+    	try {
+    	  String SQL = "select * from hall where name like '"+name+"'";
+    	  Hall hall = jdbcTemplate.queryForObject(SQL,new HallMapper());
+		    return hall;
+		}
+		catch(EmptyResultDataAccessException e) {
+			return null;
+		}
+    }
+    public List<Event> findEventsByHallName(String hallname){
+        try{// fill your code
+		String SQL = "select * from event e inner join hall h on e.hall_id = h.id where h.name like '"+hallname+"'";
+		return jdbcTemplate.query(SQL,new EventMapper());
+    }
+    catch(EmptyResultDataAccessException e){
+      return null;
+    }
+    }
+    
+    public List<Event> findEventsByHallId(int hallId){
+        // fill your code
+		String SQL = "select * from event e inner join hall h on e.hall_id = h.id where h.id="+hallId;
+		return jdbcTemplate.query(SQL,new EventMapper());
+    }
+    
+}
+final class HallMapper implements RowMapper<Hall> {
+
+    public Hall mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Hall hall = new Hall();
+        hall.setId(rs.getInt("id"));
+        hall.setName(rs.getString("name"));
+        hall.setLocation(rs.getString("location"));
+        return hall;
+    }
+}
+final class EventMapper implements RowMapper<Event>{
+
+    public Event mapRow(ResultSet rs, int rowNum) throws SQLException {
+        Event event= new Event();
+        event.setId(rs.getInt("id"));
+        event.setEventName(rs.getString("event_name"));
+        event.setOrganiser(rs.getString("organiser"));
+        event.setOrganiserNumber(rs.getString("organiser_number"));
+        event.setHall(new Hall(rs.getInt("hall_id"),rs.getString("name"),rs.getString("location")));
+        return event;
+    }
+}

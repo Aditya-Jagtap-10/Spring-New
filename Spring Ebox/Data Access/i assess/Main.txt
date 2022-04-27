@@ -1,0 +1,41 @@
+import com.spring.dao.OwnerDAO;
+import com.spring.entity.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Logger log = Logger.getLogger("org.hibernate");
+		log.setLevel(Level.OFF);
+		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+		OwnerDAO dao =(OwnerDAO) ac.getBean("ownerDAO");
+		dao.printAll();
+		System.out.println("Enter the id you want to update");
+		
+		int id = Integer.parseInt(sc.readLine());
+		String owner = dao.getOwnerById(id);
+		if(owner == null) System.out.println("No such owner");
+		else {
+			System.out.println("Enter the mobile number and email id");
+			String mobile = sc.readLine();
+			String email = sc.readLine();
+			dao.update(id, mobile, email);
+			System.out.println("updated successfully");
+			dao.printAll();
+		}
+		sc.close();
+	}
+
+}

@@ -1,0 +1,52 @@
+import com.spring.dao.EventDAO;
+import com.spring.entity.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class Main {
+
+	
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		Logger log = Logger.getLogger("org.hibernate");
+		log.setLevel(Level.OFF);
+		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
+		ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
+		BufferedReader sc = new BufferedReader(new InputStreamReader(System.in));
+		int n = 0;
+		EventDAO dao =(EventDAO) ac.getBean("eventDAO");
+		do{
+			System.out.println("Select from the list\n1) Display Hall and Events\n2) Find Events\n3) Exit");
+			n = Integer.parseInt(sc.readLine());
+			if(n==1){	
+				System.out.println("...Hall and Event List...");
+				System.out.printf("%-15s %-15s %-15s %-15s %-15s %s\n","Id","Event Name","Organiser Name","Organiser Number", "Hall Name", "Location");
+				List<Event> events = dao.getAllEvents();
+				for(Event z : events)System.out.println(z);
+			}
+			else if(n==2){
+				System.out.println("Enter the hall name to display events");
+				String input = sc.readLine();
+				Hall hall = dao.findHallByName(input);
+				if(hall == null) System.out.println("No such hall");
+				else {	
+					List<Event> events = dao.findEventsByHallId(hall.getId());
+					for(int i=1;i<=events.size();i++)
+					System.out.println(i+") "+events.get(i-1).getEventName());
+				}
+			}
+      else if(n==3) System.out.println("Thank you");
+	  else System.out.println("Invalid Choice");
+		}while(n!=3);
+		sc.close();
+	}
+
+}

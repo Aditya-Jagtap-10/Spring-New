@@ -1,0 +1,66 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------------< com:pci >-------------------------------
+[INFO] Building pci 0.0.1-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot-maven-plugin:1.4.2.RELEASE:run (default-cli) > test-compile @ pci >>>
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ pci ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ pci ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 4 source files to /tmp/webapps/1650964235298_377874/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ pci ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /tmp/webapps/1650964235298_377874/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ pci ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] <<< spring-boot-maven-plugin:1.4.2.RELEASE:run (default-cli) < test-compile @ pci <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:1.4.2.RELEASE:run (default-cli) @ pci ---
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.4.2.RELEASE)
+
+2022-04-26 14:40:38.402  INFO 30585 --- [           main] com.springboot.App                       : Starting App on ip-172-31-41-17 with PID 30585 (/tmp/webapps/1650964235298_377874/target/classes started by root in /tmp/webapps/1650964235298_377874)
+2022-04-26 14:40:38.404  INFO 30585 --- [           main] com.springboot.App                       : No active profile set, falling back to default profiles: default
+2022-04-26 14:40:38.436  INFO 30585 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14a57b12: startup date [Tue Apr 26 14:40:38 IST 2022]; root of context hierarchy
+2022-04-26 14:40:39.456  INFO 30585 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 4400 (http)
+2022-04-26 14:40:39.467  INFO 30585 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2022-04-26 14:40:39.468  INFO 30585 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.6
+2022-04-26 14:40:39.533  INFO 30585 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-04-26 14:40:39.533  INFO 30585 --- [ost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1099 ms
+2022-04-26 14:40:39.641  INFO 30585 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2022-04-26 14:40:39.644  INFO 30585 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2022-04-26 14:40:39.644  INFO 30585 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2022-04-26 14:40:39.644  INFO 30585 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2022-04-26 14:40:39.644  INFO 30585 --- [ost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2022-04-26 14:40:39.823  INFO 30585 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14a57b12: startup date [Tue Apr 26 14:40:38 IST 2022]; root of context hierarchy
+2022-04-26 14:40:39.864  INFO 30585 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/doctor/list],methods=[GET]}" onto public java.util.List<com.springboot.domain.Doctor> com.springboot.controller.DoctorController.getDoctors()
+2022-04-26 14:40:39.865  INFO 30585 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/doctor/create],methods=[POST]}" onto public java.lang.Boolean com.springboot.controller.DoctorController.create(com.springboot.domain.Doctor)
+2022-04-26 14:40:39.866  INFO 30585 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2022-04-26 14:40:39.866  INFO 30585 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2022-04-26 14:40:39.887  INFO 30585 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-26 14:40:39.887  INFO 30585 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-26 14:40:39.914  INFO 30585 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2022-04-26 14:40:40.047  INFO 30585 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2022-04-26 14:40:40.079  INFO 30585 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 4400 (http)
+2022-04-26 14:40:40.082  INFO 30585 --- [           main] com.springboot.App                       : Started App in 1.996 seconds (JVM running for 4.565)
+2022-04-26 14:40:50.999  INFO 30585 --- [       Thread-3] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@14a57b12: startup date [Tue Apr 26 14:40:38 IST 2022]; root of context hierarchy
+2022-04-26 14:40:51.000  INFO 30585 --- [       Thread-3] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
