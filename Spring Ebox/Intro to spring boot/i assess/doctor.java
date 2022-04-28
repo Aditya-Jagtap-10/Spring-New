@@ -8,10 +8,6 @@ public class Doctor {
 	private Double experience;
 	private String specialization;
 	private Double consultingFees;
-		
-	public Doctor() {
-		
-	}
 	
 	public Doctor(Integer id, String name, String qualification,
 			Double experience, String specialization, Double consultingFees) {
